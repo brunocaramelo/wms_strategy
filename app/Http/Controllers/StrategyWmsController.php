@@ -1,0 +1,32 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Services\StrategyWmsService;
+
+use App\Http\Requests\StoreStrategyFormRequest;
+
+class StrategyWmsController extends Controller
+{
+    private $strategyService;
+    public function __construct(StrategyWmsService $strategyService)
+    {
+        $this->strategyService = $strategyService;
+    }
+    public function storeStrategy(StoreStrategyFormRequest $request)
+    {
+        $responseLogin = $this->strategyService->store($request->validated());
+
+        return response()->json( $responseLogin
+            , $responseLogin['status'] == 'success' ? 200 : 400);
+    }
+
+    public function findByIdentityAndHourInstant($codeStrategy, $hour, $instant)
+    {
+        $responseData = $this->strategyService->findByHourInstant($codeStrategy, $hour, $instant);
+
+        return response()->json( $responseData
+            , 200);
+    }
+
+}
