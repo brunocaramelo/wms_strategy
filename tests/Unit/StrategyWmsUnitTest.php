@@ -24,7 +24,7 @@ class StrategyWmsUnitTest extends TestCase
     {
         $response = (new StrategyWmsService(new StrategyWmsRepository()))->store([
                 "dsEstrategia" => "RETIRA",
-                "nrPrioridade"=> 10,
+                "nrPrioridade" => 10,
                 "horarios" => [
                     [
                         "dsHorarioInicio" => "09:10",
@@ -60,6 +60,7 @@ class StrategyWmsUnitTest extends TestCase
 
         $this->assertEquals(10, $response['nrPrioridade']);
     }
+
     public function test_find_success_default_priority()
     {
         $response = (new StrategyWmsService(new StrategyWmsRepository()))->findByHourInstant(1, 22, 35);
