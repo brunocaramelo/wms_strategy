@@ -17,9 +17,9 @@ return new class extends Migration
 
             $table->integer('cd_estrategia_wms');
 
-            $table->string('ds_horario_inicio');
-            $table->string('ds_horario_final');
-            $table->integer('nr_prioridade');
+            $table->string('ds_horario_inicio')->index();;
+            $table->string('ds_horario_final')->index();;
+            $table->integer('nr_prioridade')->index();;
 
             $table->timestamp('dt_registro');
             $table->timestamp('dt_modificado')->nullable();

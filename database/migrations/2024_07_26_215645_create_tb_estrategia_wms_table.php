@@ -16,8 +16,8 @@ return new class extends Migration
 
             $table->increments('cd_estrategia_wms')->generatedAs()->always();
             $table->string('ds_estrategia_wms');
-            $table->integer('nr_prioridade');
-            $table->timestamp('dt_registro');
+            $table->integer('nr_prioridade')->index();;
+            $table->timestamp('dt_registro')->index();;
             $table->timestamp('dt_modificado')->nullable();
 
         });
