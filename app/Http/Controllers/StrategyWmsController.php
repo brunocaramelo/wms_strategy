@@ -26,10 +26,9 @@ class StrategyWmsController extends Controller
     public function findByIdentityAndHourInstant($codeStrategy, $hour, $instant)
     {
         try {
-        $responseData = $this->strategyService->findByHourInstant($codeStrategy, $hour, $instant);
+            $responseData = $this->strategyService->findByHourInstant($codeStrategy, $hour, $instant);
 
-        return response()->json( $responseData, 200);
-
+            return response()->json($responseData, 200);
         } catch (PrioriyNotFoundException $error) {
             return response()->json( ['errors' => [$error->getMessage()]], 404);
         }
