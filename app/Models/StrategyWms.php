@@ -22,7 +22,6 @@ class StrategyWms extends Model
         'dt_modificado',
     ];
 
-
     public function horariosPrioridade(): HasMany
     {
         return $this->hasMany(StrategyWmsHourPriority::class, 'cd_estrategia_wms');
