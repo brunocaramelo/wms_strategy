@@ -11,20 +11,16 @@ Esta aplicação conta com as seguintes especificações abaixo:
 | Docker Compose | 1.29.2 |
 | Nginx | 1.19.10 |
 | PHP | 8.3.9 |
-| Mariabd | 10.11.3 |
-| Redis | 5.0.0 |
+| Postgre | 16.3 |
 | Sqlite (Testes de unidade) | 3.16.2 |
 | Laravel Framework | 11.14.* |
-| VueJS | 3.0.* |
 
 A aplicação é separada pelos seguintes conteineres
 
 | Service | Image | Motivação
 | --- | --- | --- |
-| mysql | mariadb:latest | Banco de dados Principal |
-| redis | redis:alpine | Armazenamento de fila de eventos |
+| postgres | postgres:latest | Banco de dados Principal |
 | php | php-sample | Aplicação Principal (Web) |
-| php-worker | php-sample-worker-queue | Processamento da fila de eventos (novo cadastro/esqueci minha senha) |
 | web (nginx) | nginx:alpine | Web Server |
 
 ## Requisitos
@@ -49,9 +45,8 @@ A aplicação é separada pelos seguintes conteineres
     
     - 9000(php-fpm)
 
-    - 3306(mysql) 
+    - 5432(postgres) 
 
-    - 6380(redis) 
      estão ocupadas.
 
 

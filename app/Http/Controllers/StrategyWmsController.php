@@ -36,7 +36,10 @@ class StrategyWmsController extends Controller
 
             return response()->json($responseData, 200);
         } catch (PrioriyNotFoundException $priorityError) {
-            return response()->json( ['errors' => [$priorityError->getMessage()]], 404);
+            return response()->json( [
+                                    'status' => 'fail',
+                                    'message' => $priorityError->getMessage()
+                                    ], 404);
         }
     }
 

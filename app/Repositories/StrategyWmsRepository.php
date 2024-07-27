@@ -12,8 +12,8 @@ class StrategyWmsRepository implements StrategyWmsInterface
     public function findByHourInstant(int $codeStrategy, string $hour, string $instant)
     {
         return $this->searchDataGet([
-            'cd_estrategia' => $codeStrategy,
-            'range_hour' => "$hour:$instant"
+            'cdEstrategia' => $codeStrategy,
+            'rangeHour' => "$hour:$instant"
         ]);
     }
 
@@ -31,14 +31,14 @@ class StrategyWmsRepository implements StrategyWmsInterface
     public function filterBuildData(array $filters)
     {
         return $this->model::with(['horariosPrioridade' => function($query) use ($filters) {
-            $query->when(!empty($filters['range_hour']), function ($query) use ($filters) {
-                    $hourInt = str_pad($filters['range_hour'], 4, '0', STR_PAD_LEFT);
+            $query->when(!empty($filters['rangeHour']), function ($query) use ($filters) {
+                    $hourInt = str_pad($filters['rangeHour'], 4, '0', STR_PAD_LEFT);
 
                     $query->whereRaw("CAST(ds_horario_inicio  AS TIME) <= CAST(?  AS TIME)  AND CAST(ds_horario_final  AS TIME) >= CAST(?  AS TIME) ", ["'$hourInt:00'", "'$hourInt:59'"]);
                 });
             }])
-            ->when(!empty($filters['cd_estrategia']), function ($query) use ($filters) {
-                $query->where('cd_estrategia_wms', '=' ,$filters['cd_estrategia']);
+            ->when(!empty($filters['cdEstrategia']), function ($query) use ($filters) {
+                $query->where('cd_estrategia_wms', '=' ,$filters['cdEstrategia']);
             });
     }
 
