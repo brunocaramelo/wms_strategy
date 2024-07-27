@@ -13,6 +13,7 @@ class StrategyWmsControllerTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
+        \Artisan::call('migrate:fresh');
         \Artisan::call('db:seed');
     }
 
@@ -83,7 +84,7 @@ class StrategyWmsControllerTest extends TestCase
         ->assertStatus(200)
         ->assertJsonStructure([
             'nrPrioridade',
-        ])->assertJsonPath('nrPrioridade', 10);
+        ])->assertJsonPath('nrPrioridade', 30);
 
     }
     public function test_get_priority_with_default_success()

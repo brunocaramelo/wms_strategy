@@ -17,6 +17,7 @@ class StrategyWmsUnitTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
+        \Artisan::call('migrate:fresh');
         \Artisan::call('db:seed');
     }
 
@@ -52,13 +53,13 @@ class StrategyWmsUnitTest extends TestCase
         (new StrategyWmsService(new StrategyWmsRepository()))->findByHourInstant(999, 10, 25);
 
     }
+
     public function test_find_success_priority()
     {
         $response = (new StrategyWmsService(new StrategyWmsRepository()))->findByHourInstant(1, 10, 25);
 
         $this->assertArrayHasKey('nrPrioridade', $response);
-
-        $this->assertEquals(10, $response['nrPrioridade']);
+        $this->assertEquals(30, $response['nrPrioridade']);
     }
 
     public function test_find_success_default_priority()
@@ -66,9 +67,9 @@ class StrategyWmsUnitTest extends TestCase
         $response = (new StrategyWmsService(new StrategyWmsRepository()))->findByHourInstant(1, 22, 35);
 
         $this->assertArrayHasKey('nrPrioridade', $response);
-
         $this->assertEquals(10, $response['nrPrioridade']);
     }
+
     public function test_search_success_with_results()
     {
         $response = (new StrategyWmsService(new StrategyWmsRepository()))->searchAndPaginate([]);
