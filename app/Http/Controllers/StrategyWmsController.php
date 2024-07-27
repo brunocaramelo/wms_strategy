@@ -6,6 +6,8 @@ use App\Services\StrategyWmsService;
 
 use App\Http\Requests\StoreStrategyFormRequest;
 
+use App\Exceptions\PrioriyNotFoundException;
+
 class StrategyWmsController extends Controller
 {
     private $strategyService;
@@ -23,10 +25,14 @@ class StrategyWmsController extends Controller
 
     public function findByIdentityAndHourInstant($codeStrategy, $hour, $instant)
     {
+        try {
         $responseData = $this->strategyService->findByHourInstant($codeStrategy, $hour, $instant);
 
-        return response()->json( $responseData
-            , 200);
+        return response()->json( $responseData, 200);
+
+        } catch (PrioriyNotFoundException $error) {
+            return response()->json( ['errors' => [$error->getMessage()]], 404);
+        }
     }
 
 }

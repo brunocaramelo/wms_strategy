@@ -6,6 +6,8 @@ use App\Interfaces\StrategyWmsInterface;
 
 use App\Utils\ArrayKeysTransform;
 
+use App\Exceptions\PrioriyNotFoundException;
+
 class StrategyWmsService
 {
     private $strategyWmsRepository;
@@ -20,6 +22,10 @@ class StrategyWmsService
     public function findByHourInstant(int $codeStrategy, string $hour, string $instant)
     {
         $returnData = $this->strategyWmsRepository->findByHourInstant($codeStrategy, $hour, $instant);
+
+        if (empty($returnData[0]->nr_prioridade)) {
+            throw new PrioriyNotFoundException('Estratégia não encontrada');
+        }
 
         return [
             'nrPrioridade' => $returnData[0]->horariosPrioridade[0]->nr_prioridade ??
