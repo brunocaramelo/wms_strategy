@@ -20,12 +20,12 @@ class StrategyWmsRepository implements StrategyWmsInterface
     public function searchDataGet(array $filters)
     {
         return $this->filterBuildData($filters)
-                ->get();
+                    ->get();
     }
     public function searchAndPaginate(array $filters)
     {
         return $this->filterBuildData($filters)
-                ->paginate($filters['page_size'] ?? 10);
+                    ->paginate($filters['page_size'] ?? 10);
     }
 
     public function filterBuildData(array $filters)

@@ -74,7 +74,7 @@ A aplicação é separada pelos seguintes conteineres
             3 - Caso tenha algum problema de Depencias, executar o comando abaixo para garantir as mesmas.
                 sudo docker exec -t php-sample composer install;
     
-    2 -  para que o framework gere e aplique o mapeamento para a base de dados (SQL) podendo ser Mysql, PostGres , Oracle , SQL Serve ou SQLITE por exemplo
+    2 -  para que o framework gere e aplique o mapeamento para a base de dados (SQL) podendo ser Mysql, PostGres , Oracle , SQL Server ou SQLITE por exemplo
     
     3 -  para que o framework  aplique mudanças nos dados da base, no caso inserção de um primeiro usuário.
     
@@ -107,26 +107,14 @@ Após instalar o endereço de acesso é:
 
 - https://localhost
 
-- usuario criado no seed:
-    - email: admin@test.com
-    - senha: password
-
+- em docs, recuperar a collection (estrategia_WMS_bruno-caramelo.postman_collection.json) do Postman do projeto que se chama : Estrategia WMS
 
 ## Detalhes
 
-    - Vue 3
-
     - Laravel 11
-
-    - Sanctum
 
     - SOLID
 
     - Unit Tests
 
     - Docker e docker-compose
-
-## Observação
-
-   Para ver o funcionamento do envio de emails basta configurar no arquivo .env os itens: MAIL_MAILER,
-            MAIL_HOST, MAIL_PORT, MAIL_USERNAME, MAIL_PASSWORD,MAIL_ENCRYPTION

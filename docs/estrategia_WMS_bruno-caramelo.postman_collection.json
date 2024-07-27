@@ -1,0 +1,258 @@
+{
+	"info": {
+		"_postman_id": "84dafca3-5c3a-44db-ac08-c79eb141a298",
+		"name": "Estrategia WMS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "6746339"
+	},
+	"item": [
+		{
+			"name": "1-Listagem Geral de estrategias",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"dsEstrategia\": \"RETIRA\",\n    \"nrPrioridade\": 10,\n    \"horarios\":[\n        {\n            \"dsHorarioInicio\": \"09:00\",\n            \"dsHorarioFinal\": \"10:00\",\n            \"nrPrioridade\": 40\n        },\n        {\n            \"dsHorarioInicio\": \"10:01\",\n            \"dsHorarioFinal\": \"11:00\",\n            \"nrPrioridade\": 30\n        },\n        {\n            \"dsHorarioInicio\": \"11:01\",\n            \"dsHorarioFinal\": \"12:00\",\n            \"nrPrioridade\": 20\n        }\n    ]\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost/api/estrategiaWMS?page_size=11",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"estrategiaWMS"
+					],
+					"query": [
+						{
+							"key": "page_size",
+							"value": "11"
+						},
+						{
+							"key": "cdEstrategia",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "rangeHour",
+							"value": "09:43",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2-Receber Estrategia - Sucesso",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"dsEstrategia\": \"RETIRA\",\n    \"nrPrioridade\": 10,\n    \"horarios\":[\n        {\n            \"dsHorarioInicio\": \"09:00\",\n            \"dsHorarioFinal\": \"10:00\",\n            \"nrPrioridade\": 40\n        },\n        {\n            \"dsHorarioInicio\": \"10:01\",\n            \"dsHorarioFinal\": \"11:00\",\n            \"nrPrioridade\": 30\n        },\n        {\n            \"dsHorarioInicio\": \"11:01\",\n            \"dsHorarioFinal\": \"12:00\",\n            \"nrPrioridade\": 20\n        }\n    ]\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://localhost/api/estrategiaWMS"
+			},
+			"response": []
+		},
+		{
+			"name": "3-Buscar Prioridade Sucesso",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"dsEstrategia\": \"RETIRA\",\n    \"nrPrioridade\": 10,\n    \"horarios\":[\n        {\n            \"dsHorarioInicio\": \"09:00\",\n            \"dsHorarioFinal\": \"10:00\",\n            \"nrPrioridade\": 40\n        },\n        {\n            \"dsHorarioInicio\": \"10:01\",\n            \"dsHorarioFinal\": \"11:00\",\n            \"nrPrioridade\": 30\n        },\n        {\n            \"dsHorarioInicio\": \"11:01\",\n            \"dsHorarioFinal\": \"12:00\",\n            \"nrPrioridade\": 20\n        }\n    ]\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost/api/estrategiaWMS/:cdEstrategia/:dsHora/:dsMinuto/prioridade",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"estrategiaWMS",
+						":cdEstrategia",
+						":dsHora",
+						":dsMinuto",
+						"prioridade"
+					],
+					"variable": [
+						{
+							"key": "cdEstrategia",
+							"value": "1"
+						},
+						{
+							"key": "dsHora",
+							"value": "09"
+						},
+						{
+							"key": "dsMinuto",
+							"value": "30"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4-Receber Estrategia - Falhas na Validação tipos de campos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"dsEstrategia\": \"FORA_DA_LISTA\",\n    \"nrPrioridade\": \"10a\",\n    \"horarios\":[\n        {\n            \"dsHorarioInicio\": \"09:00\",\n            \"dsHorarioFinal\": \"10:20\",\n            \"nrPrioridade\": null\n        },\n        {\n            \"dsHorarioInicio\": \"10:01\",\n            \"dsHorarioFinal\": \"11:00\",\n            \"nrPrioridade\": 30\n        },\n        {\n            \"dsHorarioInicio\": 11,\n            \"dsHorarioFinal\": null,\n            \"nrPrioridade\": 20\n        }\n    ]\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://localhost/api/estrategiaWMS"
+			},
+			"response": []
+		},
+		{
+			"name": "5-Receber Estrategia - Falhas na Validação (conflito de horario)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"dsEstrategia\": \"RETIRA\",\n    \"nrPrioridade\": 10,\n    \"horarios\":[\n        {\n            \"dsHorarioInicio\": \"09:00\",\n            \"dsHorarioFinal\": \"10:20\",\n            \"nrPrioridade\": 40\n        },\n        {\n            \"dsHorarioInicio\": \"10:01\",\n            \"dsHorarioFinal\": \"11:00\",\n            \"nrPrioridade\": 30\n        },\n        {\n            \"dsHorarioInicio\": \"11:01\",\n            \"dsHorarioFinal\": \"12:00\",\n            \"nrPrioridade\": 20\n        },\n        {\n            \"dsHorarioInicio\": \"11:31\",\n            \"dsHorarioFinal\": \"12:30\",\n            \"nrPrioridade\": 23\n        }\n    ]\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://localhost/api/estrategiaWMS"
+			},
+			"response": []
+		},
+		{
+			"name": "6-Buscar Prioridade Sucesso Prioridade Padrão (razi)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"dsEstrategia\": \"RETIRA\",\n    \"nrPrioridade\": 10,\n    \"horarios\":[\n        {\n            \"dsHorarioInicio\": \"09:00\",\n            \"dsHorarioFinal\": \"10:00\",\n            \"nrPrioridade\": 40\n        },\n        {\n            \"dsHorarioInicio\": \"10:01\",\n            \"dsHorarioFinal\": \"11:00\",\n            \"nrPrioridade\": 30\n        },\n        {\n            \"dsHorarioInicio\": \"11:01\",\n            \"dsHorarioFinal\": \"12:00\",\n            \"nrPrioridade\": 20\n        }\n    ]\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost/api/estrategiaWMS/:cdEstrategia/:dsHora/:dsMinuto/prioridade",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"estrategiaWMS",
+						":cdEstrategia",
+						":dsHora",
+						":dsMinuto",
+						"prioridade"
+					],
+					"variable": [
+						{
+							"key": "cdEstrategia",
+							"value": "1"
+						},
+						{
+							"key": "dsHora",
+							"value": "23"
+						},
+						{
+							"key": "dsMinuto",
+							"value": "30"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "7-Buscar Prioridade Falha",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"dsEstrategia\": \"RETIRA\",\n    \"nrPrioridade\": 10,\n    \"horarios\":[\n        {\n            \"dsHorarioInicio\": \"09:00\",\n            \"dsHorarioFinal\": \"10:00\",\n            \"nrPrioridade\": 40\n        },\n        {\n            \"dsHorarioInicio\": \"10:01\",\n            \"dsHorarioFinal\": \"11:00\",\n            \"nrPrioridade\": 30\n        },\n        {\n            \"dsHorarioInicio\": \"11:01\",\n            \"dsHorarioFinal\": \"12:00\",\n            \"nrPrioridade\": 20\n        }\n    ]\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost/api/estrategiaWMS/:cdEstrategia/:dsHora/:dsMinuto/prioridade",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"estrategiaWMS",
+						":cdEstrategia",
+						":dsHora",
+						":dsMinuto",
+						"prioridade"
+					],
+					"variable": [
+						{
+							"key": "cdEstrategia",
+							"value": "999"
+						},
+						{
+							"key": "dsHora",
+							"value": "23"
+						},
+						{
+							"key": "dsMinuto",
+							"value": "30"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
