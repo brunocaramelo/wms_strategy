@@ -36,14 +36,13 @@ class StrategyWmsRepository implements StrategyWmsInterface
             ->when(!empty($filters['cd_estrategia']), function ($query) use ($filters) {
                 $query->where('cd_estrategia_wms', '=' ,$filters['cd_estrategia']);
             });
-
     }
 
     public function create(array $data)
     {
         $instance = $this->model::create(array_merge(['dt_registro' => now()], $data));
 
-        foreach($data['horarios'] as $horario) {
+        foreach ($data['horarios'] as $horario) {
             $instance->horariosPrioridade()->create(array_merge(['dt_registro' => now()], $horario));
         }
 
