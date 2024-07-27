@@ -20,7 +20,7 @@ A aplicação é separada pelos seguintes conteineres
 | Service | Image | Motivação
 | --- | --- | --- |
 | postgres | postgres:latest | Banco de dados Principal |
-| php | php-sample | Aplicação Principal (Web) |
+| php | php-wms | Aplicação Principal (Web) |
 | web (nginx) | nginx:alpine | Web Server |
 
 ## Requisitos
