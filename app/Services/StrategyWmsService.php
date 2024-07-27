@@ -33,9 +33,15 @@ class StrategyWmsService
         ];
     }
 
-    public function searchUsers(array $data)
+    public function searchAndPaginate(array $data)
     {
-        return $this->strategyWmsRepository->searchPaginate($data);
+        $responseData = $this->strategyWmsRepository->searchAndPaginate($data)->toArray();
+
+        $responseData['data'] = $this->arrayTransformer->transformUndescoreToCamelCase(
+            $responseData['data']
+        );
+
+        return $responseData;
     }
 
     public function store(array $params) :array

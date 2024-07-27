@@ -6,8 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-use App\Models\StrategyWmsHourPriority;
-
 use Carbon\Carbon;
 
 use Illuminate\Support\Collection;
@@ -35,10 +33,17 @@ class StoreStrategyFormRequest extends FormRequest
     public function messages()
     {
         return [
-            'email.required' => 'Email é requerido',
-            'email.email' => 'Email deve ser válido',
-            'password.required' => 'Senha é requerida',
-            'password.min' => 'Senha deve conter 5 caracteres',
+            'dsEstrategia.required' => 'DSEstrategia é requerido',
+            'dsEstrategia.in' => 'DSEstrategia deve ser : RETIRA,ENVIA,TRAJETO',
+            'nrPrioridade.nrPrioridade' => 'NRPrioridade é requerido',
+            'nrPrioridade.integer' => 'NRPrioridade deve ser numérico',
+            'horarios' => 'nó horarios é requerido',
+            'horarios.*.dsHorarioInicio.required' => 'DSHoriariInicio é requerido',
+            'horarios.*.dsHorarioInicio.string' => 'DSHoriariInicio deve ser string',
+            'horarios.*.dsHorarioFinal.required' => 'DSHoriariFinal é requerido',
+            'horarios.*.dsHorarioFinal.string' => 'DSHoriariFinal deve ser string',
+            'horarios.*.nrPrioridade.required' => 'NRPrioridade é requerido',
+            'horarios.*.nrPrioridade.integer' => 'NRPrioridade deve ser string',
         ];
     }
 
@@ -48,7 +53,7 @@ class StoreStrategyFormRequest extends FormRequest
         $validator->after(function ($validator) {
 
             if(count($validator->errors()) > 0) {
-                return;
+                return $validator;
             }
 
             $sortedCollection = collect($validator->safe()->horarios)->map(function ($item) {
@@ -72,7 +77,6 @@ class StoreStrategyFormRequest extends FormRequest
                 if($this->verificaColisao($prevItens, $dataInicio, $dataFim)) {
                     $validator->errors()->add('horarios.'.$indiceReg.'.conflito', 'Conflito de range '.$registro['dsHorarioInicio'].' ate '.$registro['dsHorarioFinal'].' na lista');
                 }
-
 
             }
 
@@ -104,9 +108,7 @@ class StoreStrategyFormRequest extends FormRequest
     public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([
-            'success'   => false,
-            'message'   => 'Validation errors',
-            'data'      => $validator->errors()
+            'errors'      => $validator->errors()
         ], 422));
     }
 

@@ -8,6 +8,7 @@ use App\Http\Requests\StoreStrategyFormRequest;
 
 use App\Exceptions\PrioriyNotFoundException;
 
+use Illuminate\Http\Request;
 class StrategyWmsController extends Controller
 {
     private $strategyService;
@@ -21,6 +22,11 @@ class StrategyWmsController extends Controller
 
         return response()->json( $responseLogin
             , $responseLogin['status'] == 'success' ? 200 : 400);
+    }
+    public function listFiltered(Request $request)
+    {
+        return $this->strategyService->searchAndPaginate($request->all());
+
     }
 
     public function findByIdentityAndHourInstant($codeStrategy, $hour, $instant)

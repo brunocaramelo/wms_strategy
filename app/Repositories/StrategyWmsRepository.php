@@ -22,6 +22,11 @@ class StrategyWmsRepository implements StrategyWmsInterface
         return $this->filterBuildData($filters)
                 ->get();
     }
+    public function searchAndPaginate(array $filters)
+    {
+        return $this->filterBuildData($filters)
+                ->paginate($filters['page_size'] ?? 10);
+    }
 
     public function filterBuildData(array $filters)
     {
@@ -30,7 +35,6 @@ class StrategyWmsRepository implements StrategyWmsInterface
                     $hourInt = str_pad($filters['range_hour'], 4, '0', STR_PAD_LEFT);
 
                     $query->whereRaw("CAST(ds_horario_inicio  AS TIME) <= CAST(?  AS TIME)  AND CAST(ds_horario_final  AS TIME) >= CAST(?  AS TIME) ", ["'$hourInt:00'", "'$hourInt:59'"]);
-
                 });
             }])
             ->when(!empty($filters['cd_estrategia']), function ($query) use ($filters) {
