@@ -9,7 +9,7 @@ use App\Models\StrategyWms;
 class StrategyWmsHourPriority extends Model
 {
     protected $table = 'tb_estrategia_wms_horario_prioridade';
-    protected $primaryKey = 'cd_estrategia_wms';
+    protected $primaryKey = 'cd_estrategia_wms_horario_prioridade';
     protected $fillable = [
         'cd_estrategia_wms_horario_prioridade',
         'cd_estrategia_wms',
