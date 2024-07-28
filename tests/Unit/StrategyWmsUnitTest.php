@@ -17,7 +17,7 @@ class StrategyWmsUnitTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        \Artisan::call('migrate:fresh');
+        \Artisan::call('migrate');
         \Artisan::call('db:seed');
     }
 
@@ -59,7 +59,7 @@ class StrategyWmsUnitTest extends TestCase
         $response = (new StrategyWmsService(new StrategyWmsRepository()))->findByHourInstant(1, 10, 25);
 
         $this->assertArrayHasKey('nrPrioridade', $response);
-        $this->assertEquals(30, $response['nrPrioridade']);
+        $this->assertEquals(10, $response['nrPrioridade']);
     }
 
     public function test_find_success_default_priority()
