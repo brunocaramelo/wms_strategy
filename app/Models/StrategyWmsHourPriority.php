@@ -11,7 +11,6 @@ class StrategyWmsHourPriority extends Model
     protected $table = 'tb_estrategia_wms_horario_prioridade';
     protected $primaryKey = 'cd_estrategia_wms_horario_prioridade';
     protected $fillable = [
-        'cd_estrategia_wms_horario_prioridade',
         'cd_estrategia_wms',
         'ds_horario_inicio',
         'ds_horario_final',
