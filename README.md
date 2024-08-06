@@ -58,6 +58,8 @@ The application is separated into the following containers
 
     3 - docker exec -t php-wms php /app/artisan db:seed;
 
+    4 - docker exec -t php-wms ./vendor/bin/phpunit;
+
     ### Description of steps (in case of problems)
 
     1 - for the images to be stored and executed and upload the instances
