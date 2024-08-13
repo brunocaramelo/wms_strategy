@@ -1,5 +1,8 @@
 # SIMPLE PRIORITY QUERY APPLICATION
 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/c394a0b9d883422d82a1dc2d8e9394b1)](https://app.codacy.com/gh/brunocaramelo/wms_strategy/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+
+[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/c394a0b9d883422d82a1dc2d8e9394b1)](https://app.codacy.com/gh/brunocaramelo/wms_strategy/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_coverage)
 
 ## Technical Specifications
 
